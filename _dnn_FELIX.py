@@ -15,7 +15,9 @@ import pickle as pc
 import os
 import shap
 
-import tensorflow as tf   
+import tensorflow as tf
+#tf.compat.v1.disable_v2_behavior()
+   
 import tensorflow.keras as kr
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense, Input, Dropout, AlphaDropout, BatchNormalization
@@ -554,8 +556,8 @@ class DNN(object):
 
         # Predicting the current date using a recalibrated DNN
         Yp = self.model.predict(X).squeeze()
-        #if self.best_hyperparameters['scaleY'] in ['Norm', 'Norm1', 'Std', 'Median', 'Invariant']:
-        #    Yp = self.scaler.inverse_transform(Yp.reshape(1, -1))
+        if self.best_hyperparameters['scaleY'] in ['Norm', 'Norm1', 'Std', 'Median', 'Invariant']:
+            Yp = self.scaler.inverse_transform(Yp.reshape(1, -1))
 
         return Yp
 
@@ -599,13 +601,9 @@ class DNN(object):
                                 data_augmentation=self.data_augmentation, 
                                 n_exogenous_inputs=len(df_train.columns) - 1)
 
-        self.scaler = None
-        self.scalerX = None
-
-        
         # Normalizing the input and outputs if needed
-        #Xtrain, Xval, Xtest, Ytrain, Yval = \
-        #    self._regularize_data(Xtrain=Xtrain, Xval=Xval, Xtest=Xtest, Ytrain=Ytrain, Yval=Yval)
+        Xtrain, Xval, Xtest, Ytrain, Yval = \
+            self._regularize_data(Xtrain=Xtrain, Xval=Xval, Xtest=Xtest, Ytrain=Ytrain, Yval=Yval)
 
 
         # Recalibrating the neural network and extracting the prediction
