@@ -16,8 +16,8 @@ import os
 import shap
 
 
-import tensorflow as tf    
-tf.compat.v1.disable_v2_behavior() # <-- HERE !
+#import tensorflow as tf    
+#tf.compat.v1.disable_v2_behavior() # <-- HERE !
 
 #import tensorflow.keras.backend as kr
 #from tensorflow.keras.utils import to_categorical
