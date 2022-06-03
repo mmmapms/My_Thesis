@@ -19,22 +19,22 @@ import shap
 import tensorflow as tf    
 tf.compat.v1.disable_v2_behavior() # <-- HERE !
 
-import tensorflow.keras.backend as kr
-from tensorflow.keras.utils import to_categorical
-from tensorflow.python.keras.layers import LeakyReLU, PReLU
-from tensorflow.python.keras import Sequential
-from tensorflow.keras import optimizers
-from tensorflow.keras.models import Model
-from tensorflow.keras.regularizers import l2, l1
-from tensorflow.keras.layers import Dense, Input, Dropout, AlphaDropout, BatchNormalization
-
-#import tensorflow as tf   
-#import tensorflow.keras as kr
+#import tensorflow.keras.backend as kr
+#from tensorflow.keras.utils import to_categorical
+#from tensorflow.python.keras.layers import LeakyReLU, PReLU
+#from tensorflow.python.keras import Sequential
+#from tensorflow.keras import optimizers
 #from tensorflow.keras.models import Model
-#from tensorflow.keras.layers import Dense, Input, Dropout, AlphaDropout, BatchNormalization
 #from tensorflow.keras.regularizers import l2, l1
-#from tensorflow.keras.layers import LeakyReLU, PReLU
-#import tensorflow.keras.backend as K
+#from tensorflow.keras.layers import Dense, Input, Dropout, AlphaDropout, BatchNormalization
+
+import tensorflow as tf   
+import tensorflow.keras as kr
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Input, Dropout, AlphaDropout, BatchNormalization
+from tensorflow.keras.regularizers import l2, l1
+from tensorflow.keras.layers import LeakyReLU, PReLU
+import tensorflow.keras.backend as K
 
 
 from epftoolbox.evaluation import MAE, sMAPE
