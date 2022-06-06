@@ -570,8 +570,8 @@ class DNN(object):
 
         # Predicting the current date using a recalibrated DNN
         Yp = self.model.predict(X).squeeze()
-        #if self.best_hyperparameters['scaleY'] in ['Norm', 'Norm1', 'Std', 'Median', 'Invariant']:
-        #    Yp = self.scaler.inverse_transform(Yp.reshape(1, -1))
+        if self.best_hyperparameters['scaleY'] in ['Norm', 'Norm1', 'Std', 'Median', 'Invariant']:
+            Yp = self.scaler.inverse_transform(Yp.reshape(1, -1))
 
         return Yp
 
@@ -616,10 +616,11 @@ class DNN(object):
                                 n_exogenous_inputs=len(df_train.columns) - 1)
 
         # Normalizing the input and outputs if needed
-        #Xtrain, Xval, Xtest, Ytrain, Yval = \
-        #    self._regularize_data(Xtrain=Xtrain, Xval=Xval, Xtest=Xtest, Ytrain=Ytrain, Yval=Yval)
-        self.scaler = None
-        self.scalerX = None
+        Xtrain, Xval, Xtest, Ytrain, Yval = \
+            self._regularize_data(Xtrain=Xtrain, Xval=Xval, Xtest=Xtest, Ytrain=Ytrain, Yval=Yval)
+        
+        #self.scaler = None
+        #self.scalerX = None
 
         # Recalibrating the neural network and extracting the prediction
         Yp = self.recalibrate_predict(Xtrain=Xtrain, Ytrain=Ytrain, Xval=Xval, Yval=Yval, Xtest=Xtest)
