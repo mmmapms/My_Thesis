@@ -333,7 +333,7 @@ def scaling(datasets, normalize):
 
     """
 
-    scaler = DataScaler('Norm1')
+    scaler = DataScaler(normalize)
 
     for i, dataset in enumerate(datasets):
         if i == 0:
